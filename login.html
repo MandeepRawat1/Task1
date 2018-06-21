@@ -19,17 +19,22 @@
 	
 <div class="col-lg-4 col-md-3 col-sm-2"></div>
 	
-<div class="col-lg-4 col-md-6 col-sm-8" style="background-color: white;border-radius: 6px;">
+<div class="col-lg-4 col-md-6 col-sm-8 " style="background-color: white;border-radius: 6px;">
 	<br>
-	<form class="form form-horizontal">
+	<form class="form form-horizontal" action="#" onsubmit="return validation()">
 		
-		<input class="form-control" type="email" name="email" placeholder="email"><br>
+		<input class="form-control " autocomplete="off" type="email" name="email" placeholder="email" id="useremail" required>
+		<span class="text-danger font-weight-bold" id="mail"></span><br>
+		
 
-<input class="form-control" type="password" name="email" placeholder="password"><br>
+<input class="form-control " autocomplete="off" type="password" name="password" placeholder="password" id="userpassword" required>
+<span class="text-danger font-weight-bold" id="pass"></span><br>
+		
+
 		<br>
 
 <input type="checkbox" name="">check it all <br>
-		<input type="submit" name="" value="login" class="btn btn-md btn-success" style="margin-left: 130px;margin-bottom: 10px;">
+		<input type="submit" name="" value="login" class="btn btn-md btn-success" style="margin-left: 130px;margin-bottom: 10px;" >
 
 	</form>
 
@@ -43,6 +48,64 @@
 </div>
 
 
-</body>
+<script type="text/javascript">
+
+
+
+
+function validation()
+{
+var regex =/^([a-z\d]*\.\d@([a-z]\.[a-z]))?$/;
+
+document.querySelector("#useremail").addEventListener("keyup",(e)=>{
+
+	if(e.target.value==null)
+	{
+		document.getElementById('mail').innerHTML=" ** Please enter the user email";
+		
+	}
+	else if(e.target.value.length<=8)
+	{
+		document.getElementById('mail').innerHTML=" ** minimum email length should be 8";
+		
+
+	}
+	else
+	{
+document.getElementById('mail').innerHTML="";
+		}
+
+
+
+
+
+},false);
+
+document.querySelector("#userpassword").addEventListener("keyup",(d)=>{
+
+var regx= /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?!.*[#!@*])[a-zA-z]{8,}/;
+  var sd=d.target.value;
+
+	if(!regx.test(sd))
+	{
+	
+		document.getElementById('pass').innerHTML=" ** Please enter atleast one number,one character,no special symbol";
+		
+	}
+	else
+	{
+document.getElementById('pass').innerHTML="";
+		}
+
+
+
+
+
+},false);
+}
+
+validation();
+
+</script>
 <script type="text/javascript" src="/data/js/bootstrap.js"></script>
 </html>
